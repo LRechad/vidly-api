@@ -1,9 +1,18 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 // Routes
-const genresRoutes = require('./routes/genres'); 
+const genresRoutes = require('./routes/genres');
 
 const app = express();
+
+mongoose.connect('mongodb://localhost/vidly', {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+}).then(() => console.log('Connected to MongoDB...'))
+.catch(err => console.error('Could not connect to MongoDB ...', err));
 
 // Parse POST request
 app.use(express.json());
