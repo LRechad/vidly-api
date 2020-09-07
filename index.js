@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 // Routes
 const genresRoutes = require('./routes/genres');
+const customersRoutes = require('./routes/customers');
 
 const app = express();
 
@@ -17,6 +18,7 @@ mongoose.connect('mongodb://localhost/vidly', {
 // Parse POST request
 app.use(express.json());
 app.use('/api/genres', genresRoutes);
+app.use('/api/customers', customersRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running on ${PORT}...`));
