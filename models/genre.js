@@ -23,5 +23,6 @@ const validateGenre = genre => {
 
 module.exports = {
     Genre,
-    validate: validateGenre
+    validate: validateGenre,
+    genreSchema
 }
