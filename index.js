@@ -13,7 +13,8 @@ mongoose.connect('mongodb://localhost/vidly', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    retryWrites: false
 }).then(() => console.log('Connected to MongoDB...'))
 .catch(err => console.error('Could not connect to MongoDB ...', err));
 
