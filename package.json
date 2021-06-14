@@ -12,6 +12,7 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "express": "^4.17.1",
+    "joi-objectid": "^3.0.1",
     "mongoose": "^5.10.2"
   }
 }
