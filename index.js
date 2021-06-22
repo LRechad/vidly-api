@@ -8,6 +8,7 @@ const genresRoutes = require('./routes/genres');
 const customersRoutes = require('./routes/customers');
 const moviesRoutes = require('./routes/movies');
 const rentalsRoutes = require('./routes/rentals');
+const usersRoutes = require('./routes/users');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api/genres', genresRoutes);
 app.use('/api/customers', customersRoutes);
 app.use('/api/movies', moviesRoutes);
 app.use('/api/rentals', rentalsRoutes);
+app.use('/api/users', usersRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running on ${PORT}...`));
