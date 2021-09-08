@@ -1,4 +1,5 @@
 const express = require('express');
+const { genSalt, hash } = require('bcrypt');
 const { User, validate } = require('../models/user');
 
 const router = express.Router();
@@ -13,13 +14,14 @@ router.post('/', async (req, res) => {
     if (user) return res.status(400).send('User already registered.');
 
     const { name, email, password } = req.body;
-    
     user = new User({
         name,
         email,
         password
     });
 
+    const salt = await genSalt(10);
+    user.password = await hash(user.password, salt);
     await user.save();
     
     res.send({
