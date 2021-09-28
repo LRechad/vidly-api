@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
 const { genSalt, hash } = require('bcrypt');
 const { User, validate } = require('../models/user');
 
@@ -24,7 +25,9 @@ router.post('/', async (req, res) => {
     user.password = await hash(user.password, salt);
     await user.save();
     
-    res.send({
+    // Generating a token during registration
+    const token = user.generateAuthToken();
+    res.header('x-auth-token', token).send({
         '_id': user._id,
         name,
         email

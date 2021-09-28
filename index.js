@@ -1,7 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 Joi.objectId = require('joi-objectid')(Joi);
+
+if (!process.env.JWT_PRIVATE_KEY) {
+    console.error('FATAL ERROR: JWT_PRIVATE_KEY is not defined.');
+    process.exit(1);
+}
 
 // Routes
 const genresRoutes = require('./routes/genres');

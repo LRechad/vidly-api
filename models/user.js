@@ -1,6 +1,7 @@
 const Joi = require('@hapi/joi');
 const mongoose = require('mongoose');
 const passwordComplexity = require('joi-password-complexity');
+const jwt = require('jsonwebtoken');
 
 const complexityOptions = {
     min: 5,
@@ -33,6 +34,10 @@ const userSchema = new mongoose.Schema({
         required: true,
     }
 });
+
+userSchema.methods.generateAuthToken = function() {
+    return jwt.sign({ _id: this.id }, process.env.JWT_PRIVATE_KEY);
+}
 
 const User = mongoose.model('User', userSchema);
 
