@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const { Rental, validate } = require('../models/rental');
 const { Movie } = require('../models/movie');
 const { Customer } = require('../models/customer');
+const { auth } = require('../middlewares/auth');
 
 const router = express.Router();
 
